@@ -3,9 +3,18 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { ClerkProvider, SignIn, SignUp, SignedIn, SignedOut } from "@clerk/clerk-react";
+import {
+  ClerkProvider,
+  SignIn,
+  SignUp,
+  SignedIn,
+  SignedOut,
+} from "@clerk/clerk-react";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import ProtectedPage from "./ProtectedPage";
+import Dashboard from "./containers/Dashboard";
+import Sidebar from "./components/Sidebar";
+import Customer from "./containers/Customer";
 
 if (!process.env.REACT_APP_CLERK_PUBLISHABLE_KEY) {
   throw new Error("Missing Publishable Key");
@@ -26,26 +35,45 @@ const ClerkWithRoutes = () => {
         navigate={(to) => navigate(to)}
       >
         <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/sign-in/*" element={<SignIn redirectUrl={"/protected"} routing="path" path="/sign-in" />} />
+          <Route path="/" element={<Sidebar />} />
+          <Route
+            path="/sign-in/*"
+            element={
+              <SignIn
+                // redirectUrl={"/sidebar"}
+                routing="path"
+                path="/sign-in"
+                hideBranding
+              />
+            }
+          />
           <Route
             path="/sign-up/*"
-            element={<SignUp redirectUrl={"/protected"} routing="path" path="/sign-up" />}
+            element={
+              <SignUp
+                // redirectUrl={"/sidebar"}
+                routing="path"
+                path="/sign-up"
+                hideBranding
+              />
+            }
           />
-          <Route 
-          path="/protected"
-          element={
-            <>
-            <SignedIn>
-            <ProtectedPage />
-            </SignedIn>
-            <SignedOut>
-            <ProtectedPage />
-            </SignedOut>
-            
-            </>
-          }
+          <Route
+            path="/sidebar"
+            element={
+              <>
+                <SignedIn>
+                  <ProtectedPage />
+                </SignedIn>
+                <SignedOut>
+                  <ProtectedPage />
+                </SignedOut>
+              </>
+            }
           />
+
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/customer" element={<Customer />} />
         </Routes>
       </ClerkProvider>
     </>
@@ -64,4 +92,3 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-  
