@@ -3,7 +3,7 @@ const router = express.Router();
 const Sale = require('../models/sales.model');
 
 // POST route to submit a new sale
-router.post('/sale', async (req, res) => {
+router.post('/sales', async (req, res) => {
   try {
     // Create a new sale document
     const newSale = new Sale(req.body);
@@ -19,7 +19,7 @@ router.post('/sale', async (req, res) => {
 });
 
 // GET route to fetch all sales
-router.get('/sale', async (req, res) => {
+router.get('/sales', async (req, res) => {
   try {
     // Fetch all sales from the database
     const sales = await Sale.find();
@@ -32,7 +32,7 @@ router.get('/sale', async (req, res) => {
 });
 
 // PUT route to update a sale by ID
-router.put('/sale/:id', async (req, res) => {
+router.put('/sales/:id', async (req, res) => {
   try {
     // Extract the ID parameter from the request URL
     const { id } = req.params;
@@ -53,7 +53,7 @@ router.put('/sale/:id', async (req, res) => {
 });
 
 // DELETE route to delete a sale by ID
-router.delete('/sale/:id', async (req, res) => {
+router.delete('/sales/:id', async (req, res) => {
   try {
     // Extract the ID parameter from the request URL
     const { id } = req.params;
