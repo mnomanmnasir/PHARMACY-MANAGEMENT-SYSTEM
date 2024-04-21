@@ -1,12 +1,16 @@
 import React from 'react'
 import Sidebar from '../components/Sidebar'
+import Cards from './Cards'
+import Sales from './Sales'
 // import Sidebar from ''
 
 const Dashboard = () => {
     return (
         <>
-        <Sidebar />
-        welcome to dashboard
+            <Sidebar />
+            <div className='px-3'>
+                <Cards />
+            </div>
         </>
     )
 }
