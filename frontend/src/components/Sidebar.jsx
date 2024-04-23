@@ -15,8 +15,8 @@ const Sidebar = () => {
 
     return (
         <>
-            <Navbar />
-            <div className="sidebar" style={{}}>
+            {/* <Navbar /> */}
+            <div className="sidebar p-2" style={{}}>
                 {/* <BiCube className="bi my-1 me-2 fs-3" /> */}
                 <div className='text-center m-3'>
                     <img src={logo} alt="Logo" width={100} height={100} />
@@ -24,7 +24,7 @@ const Sidebar = () => {
                 </div>
                 <hr className="text-dark" />
                 <div className="list-group list-group-flush">
-                    <Link to='/dashboard' className="list-group-item list-group-item-action d-flex align-items-center mb-2 ">
+                    <Link to='/dashboard' className="list-group-item list-group-item-action d-flex align-items-center mb-2 py-2">
                         <MdOutlineDashboard className="bi my-1 me-2 fs-5" />
                         <span>Dashboard</span>
                     </Link>

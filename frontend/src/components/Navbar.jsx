@@ -11,7 +11,7 @@ import { FaChevronDown } from 'react-icons/fa';
 import { UserButton, useUser } from "@clerk/clerk-react";
 // import { Input } from 'react-bootstrap'
 
-const Navbar = () => {
+const Navbar = ({Toggle}) => {
 
   //   useEffect(() => {
   //     AOS.init();
@@ -20,8 +20,9 @@ const Navbar = () => {
 
   return (
     <>
-      <nav class="navbar navbar-expand-lg navbar-light bg-info">
-        <div className="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        {/* <div className="container-fluid"> */}
+        <i className="navbar-brand bi bi-justify-left" onClick={Toggle}></i>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -33,15 +34,15 @@ const Navbar = () => {
               <li className="nav-item">
                 <a className="nav-link" href="#">Link</a>
               </li> */}
-            </ul>
-            <form className="d-flex gap-3">
+              </ul>
               <span className="nav-link m-1">{user ? user.fullName : 'User not found'}</span> 
               <UserButton />
+            <form className="d-flex gap-3">
               {/* <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/> */}
               {/* <button className="btn btn-outline-success" type="submit">Search</button> */}
             </form>
           </div>
-        </div>
+        {/* </div> */}
       </nav>
     </>
   );
