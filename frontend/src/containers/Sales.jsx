@@ -3,8 +3,9 @@ import Sidebar from '../components/Sidebar';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { BsPencilSquare, BsTrash } from 'react-icons/bs';
 import axios from 'axios';
+import Navbar from '../components/Navbar';
 
-const Sales = () => {
+const Sales = ({ Toggle }) => {
     const [sales, setSales] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [formData, setFormData] = useState({
@@ -45,7 +46,7 @@ const Sales = () => {
         });
         fetchSales(); // Refetch sales data after closing modal
     };
-    
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -55,7 +56,7 @@ const Sales = () => {
         }));
     };
 
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault(); // Prevent default form submission behavior
         try {
@@ -74,7 +75,7 @@ const Sales = () => {
             console.error('Error adding sale to database:', error);
         }
     };
-    
+
 
     return (
         <>
@@ -83,7 +84,7 @@ const Sales = () => {
                 <div className="flex-grow-1 d-flex justify-content-center align-items-center m-3">
                     <div className='d-flex justify-content-center'>
                         <div className="m-3 align-self-center">
-                        {/* <h2>Inventory</h2> */}
+                            {/* <h2>Inventory</h2> */}
                             <table className="table table-hover table-bordered text-center">
                                 <thead className='table-info'>
                                     <tr>
