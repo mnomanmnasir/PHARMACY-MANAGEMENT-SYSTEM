@@ -15,76 +15,85 @@ import ProtectedPage from "./ProtectedPage";
 import Dashboard from "./containers/Dashboard";
 import Sidebar from "./components/Sidebar";
 import Customer from "./containers/Customer";
+import Sales from "./containers/Sales";
+import Inventory from "./containers/Inventory";
+import { createRoot } from "react-dom/client";
 
 if (!process.env.REACT_APP_CLERK_PUBLISHABLE_KEY) {
   throw new Error("Missing Publishable Key");
 }
 
 // Import your publishable key
-const clerkPubKey = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY;
+// const clerkPubKey = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY;
+// {
+//   console.log(clerkPubKey);
+// }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-const ClerkWithRoutes = () => {
-  const navigate = useNavigate();
+// const ClerkWithRoutes = () => {
+//   const navigate = useNavigate();
 
-  return (
-    <>
-      <ClerkProvider
-        publishableKey={clerkPubKey}
-        navigate={(to) => navigate(to)}
-      >
-        <Routes>
-          <Route path="/" element={<Sidebar />} />
-          <Route
-            path="/sign-in/*"
-            element={
-              <SignIn
-                // redirectUrl={"/sidebar"}
-                routing="path"
-                path="/sign-in"
-                hideBranding
-              />
-            }
-          />
-          <Route
-            path="/sign-up/*"
-            element={
-              <SignUp
-                // redirectUrl={"/sidebar"}
-                routing="path"
-                path="/sign-up"
-                hideBranding
-              />
-            }
-          />
-          <Route
-            path="/sidebar"
-            element={
-              <>
-                <SignedIn>
-                  <ProtectedPage />
-                </SignedIn>
-                <SignedOut>
-                  <ProtectedPage />
-                </SignedOut>
-              </>
-            }
-          />
+//   return (
+//     <>
+//       <ClerkProvider
+//         publishableKey={clerkPubKey}
+//         navigate={(to) => navigate(to)}
+//       >
+//         <Routes>
+//           <Route path="/" element={<Sidebar />} />
+//           <Route
+//             path="/sign-in/*"
+//             element={
+//               <SignIn
+//                 // redirectUrl={"/sidebar"}
+//                 routing="path"
+//                 path="/sign-in"
+//                 hideBranding
+//               />
+//             }
+//           />
+//           <Route
+//             path="/sign-up/*"
+//             element={
+//               <SignUp
+//                 // redirectUrl={"/sidebar"}
+//                 routing="path"
+//                 path="/sign-up"
+//                 hideBranding
+//               />
+//             }
+//           />
+//           <Route
+//             path="/sidebar"
+//             element={
+//               <>
+//                 <SignedIn>
+//                   <ProtectedPage />
+//                 </SignedIn>
+//                 <SignedOut>
+//                   <ProtectedPage />
+//                 </SignedOut>
+//               </>
+//             }
+//           />
 
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/customer" element={<Customer />} />
-        </Routes>
-      </ClerkProvider>
-    </>
-  );
-};
+//           <Route path="/dashboard" element={<Dashboard />} />
+//           <Route path="/customer" element={<Customer />} />
+//           <Route path="/sales" element={<Sales />} />
+//           <Route path="/inventories" element={<Inventory />} />
+//         </Routes>
+//       </ClerkProvider>
+//     </>
+//   );
+// };
 
+// Rendering the React application using ReactDOM.render
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ClerkWithRoutes />
-    </BrowserRouter>
+    {/* <BrowserRouter> */}
+      <App />
+    {/* </BrowserRouter> */}
   </React.StrictMode>
 );
 
