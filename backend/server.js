@@ -5,6 +5,8 @@ const colors = require("colors");
 const morgan = require("morgan");
 const cors = require("cors");
 const connectDB = require("./config/db");
+const authRouter  = require('./routes/authRoute')
+
 
 dotenv.config();
 
@@ -19,6 +21,7 @@ app.use(cors());
 
 
 // Define routes
+app.use('/api/auth', authRouter)
 app.use("/api/v1/test", require("./routes/testRoutes"));
 app.use("/api/v1/sales", require("./routes/sales.route"))
 app.use("/api/v1/login", require("./routes/loginRoute"));
