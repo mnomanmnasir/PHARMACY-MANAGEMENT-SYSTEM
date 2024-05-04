@@ -10,34 +10,31 @@ import Inventory from "./containers/Inventory";
 import { UserProvider, useUser } from "./containers/UserContext"; // Import and use the UserProvider and useUser hook
 import Login from "./containers/Login";
 import Register from "./containers/Register";
+import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
+import ProtectedRoute from './PrivateRoute'
+import { AuthProvider } from './containers/AuthContext';
 
-const ProtectedRoute = ({ element, ...rest }) => {
-  const { user } = useUser(); // Assuming you have a hook to access user information
 
-  return user ? (
-    <Route {...rest} element={element} />
-  ) : (
-    <Navigate to="/login" replace />
-  );
-};
 
 const App = () => {
   return (
     <Router>
-      <UserProvider> {/* Wrap your entire app with UserProvider */}
-        {/* <Sidebar /> */}
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          {/* Protected routes */}
-          <Route element={<ProtectedRoute />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/customer" element={<Customer />} />
-            <Route path="/sales" element={<Sales />} />
-            <Route path="/inventories" element={<Inventory />} />
-          </Route>
-        </Routes>
-      </UserProvider>
+      {/* <AuthProvider> */}
+        <UserProvider>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            {/* /* Protected routes */}
+            <Route element={<ProtectedRoute />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/customer" element={<Customer />} />
+              <Route path="/sales" element={<Sales />} />
+              <Route path="/inventories" element={<Inventory />} />
+            </Route>
+          </Routes>
+        </UserProvider>
+      {/* </AuthProvider> */}
     </Router>
   );
 }

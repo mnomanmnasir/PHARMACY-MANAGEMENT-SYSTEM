@@ -10,14 +10,15 @@ import {
   SignedIn,
   SignedOut,
 } from "@clerk/clerk-react";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-import ProtectedPage from "./ProtectedPage";
+import { BrowserRouter, Routes, Route, useHistory } from "react-router-dom";
+// import ProtectedPage from "./ProtectedPage";
 import Dashboard from "./containers/Dashboard";
 import Sidebar from "./components/Sidebar";
 import Customer from "./containers/Customer";
 import Sales from "./containers/Sales";
 import Inventory from "./containers/Inventory";
 import { createRoot } from "react-dom/client";
+import { AuthProvider } from "./containers/AuthContext";
 
 if (!process.env.REACT_APP_CLERK_PUBLISHABLE_KEY) {
   throw new Error("Missing Publishable Key");
@@ -29,7 +30,7 @@ if (!process.env.REACT_APP_CLERK_PUBLISHABLE_KEY) {
 //   console.log(clerkPubKey);
 // }
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+// const root = ReactDOM.createRoot(document.getElementById("root"));
 
 // const ClerkWithRoutes = () => {
 //   const navigate = useNavigate();
@@ -89,12 +90,16 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 // };
 
 // Rendering the React application using ReactDOM.render
-root.render(
+ReactDOM.render(
   <React.StrictMode>
-    {/* <BrowserRouter> */}
+    <AuthProvider>
+      {/* Wrap your entire app with AuthProvider */}
+      {/* <BrowserRouter> */}
       <App />
-    {/* </BrowserRouter> */}
-  </React.StrictMode>
+      {/* </BrowserRouter> */}
+    </AuthProvider>
+  </React.StrictMode>,
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
