@@ -20,7 +20,7 @@ import { AuthProvider } from './containers/AuthContext';
 const App = () => {
   return (
     <Router>
-      {/* <AuthProvider> */}
+      <AuthProvider>
         <UserProvider>
           <Routes>
             <Route path="/login" element={<Login />} />
@@ -34,7 +34,7 @@ const App = () => {
             </Route>
           </Routes>
         </UserProvider>
-      {/* </AuthProvider> */}
+      </AuthProvider>
     </Router>
   );
 }
