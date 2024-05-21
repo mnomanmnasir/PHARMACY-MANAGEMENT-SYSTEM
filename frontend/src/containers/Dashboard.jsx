@@ -26,25 +26,11 @@ const Dashboard = () => {
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, []); // Empty dependency array ensures effect is only applied once on component mount
+    }, []);
 
     return (
         <>
-        
-            <div className="container-fluid">
-                <div className="row">
-                    {toggle && (
-                        <div className="col-2 vh-100">
-                            <Sidebar />
-                        </div>
-                    )}
-                    <div className='col'>
-                        <Navbar Toggle={Toggle} />
-                        <Cards Toggle={Toggle} />
-                        {/* <Inventory Toggle={Toggle}/> */}
-                    </div>
-                </div>
-            </div>
+            <Cards Toggle={Toggle} />
         </>
     );
 };
