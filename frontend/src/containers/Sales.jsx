@@ -79,92 +79,89 @@ const Sales = ({ Toggle }) => {
 
     return (
         <>
-            <Sidebar />
-            <div className='justify-content-center'>
-                <div className="flex-grow-1 d-flex justify-content-center align-items-center m-3">
-                    <div className='d-flex justify-content-center'>
-                        <div className="m-3 align-self-center">
-                            {/* <h2>Inventory</h2> */}
-                            <table className="table table-hover table-bordered text-center">
-                                <thead className='table-info'>
-                                    <tr>
-                                        <th>Product Name</th>
-                                        <th>Quantity Sold</th>
-                                        <th>Unit Price</th>
-                                        <th>Total Price</th>
-                                        <th>Customer Name</th>
-                                        <th>Sale Date</th>
-                                        <th>Actions</th>
+            <div className="main-content container-fluid px-4">
+                <div className="row mt-4">
+                    <div className="col">
+                        {/* <h2>Inventory</h2> */}
+                        <table className="table table-hover table-bordered text-center">
+                            <thead className='table-info'>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Quantity Sold</th>
+                                    <th>Unit Price</th>
+                                    <th>Total Price</th>
+                                    <th>Customer Name</th>
+                                    <th>Sale Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {sales.map((sale, index) => (
+                                    <tr key={index}>
+                                        <td>{sale.productName}</td>
+                                        <td>{sale.quantitySold}</td>
+                                        <td>{sale.unitPrice}</td>
+                                        <td>{sale.totalPrice}</td>
+                                        <td>{sale.customerName}</td>
+                                        <td>{new Date(sale.saleDate).toLocaleDateString()}</td>
+                                        <td>
+                                            <Button variant="light" className='btn-sm'>
+                                                <BsPencilSquare />
+                                            </Button>
+                                            <Button variant="light" className='btn-sm'>
+                                                <BsTrash />
+                                            </Button>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    {sales.map((sale, index) => (
-                                        <tr key={index}>
-                                            <td>{sale.productName}</td>
-                                            <td>{sale.quantitySold}</td>
-                                            <td>{sale.unitPrice}</td>
-                                            <td>{sale.totalPrice}</td>
-                                            <td>{sale.customerName}</td>
-                                            <td>{new Date(sale.saleDate).toLocaleDateString()}</td>
-                                            <td>
-                                                <Button variant="light" className='btn-sm'>
-                                                    <BsPencilSquare />
-                                                </Button>
-                                                <Button variant="light" className='btn-sm'>
-                                                    <BsTrash />
-                                                </Button>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                            <Button variant="info border-rounded" onClick={handleOpenModal}>
-                                Add Sale
-                            </Button>
-                            <Modal show={showModal} onHide={handleCloseModal}>
-                                <Modal.Header closeButton>
-                                    <Modal.Title>Add New Sale</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>
-                                    <Form onSubmit={handleSubmit}>
-                                        <Form.Group controlId="productName">
-                                            <Form.Label>Product Name</Form.Label>
-                                            <Form.Control type="text" name="productName" value={formData.productName} onChange={handleChange} />
-                                        </Form.Group>
-                                        <Form.Group controlId="quantitySold">
-                                            <Form.Label>Quantity Sold</Form.Label>
-                                            <Form.Control type="number" name="quantitySold" value={formData.quantitySold} onChange={handleChange} />
-                                        </Form.Group>
-                                        <Form.Group controlId="unitPrice">
-                                            <Form.Label>Unit Price</Form.Label>
-                                            <Form.Control type="number" name="unitPrice" value={formData.unitPrice} onChange={handleChange} />
-                                        </Form.Group>
-                                        <Form.Group controlId="totalPrice">
-                                            <Form.Label>Total Price</Form.Label>
-                                            <Form.Control type="number" name="totalPrice" value={formData.totalPrice} onChange={handleChange} />
-                                        </Form.Group>
-                                        <Form.Group controlId="customerName">
-                                            <Form.Label>Customer Name</Form.Label>
-                                            <Form.Control type="text" name="customerName" value={formData.customerName} onChange={handleChange} />
-                                        </Form.Group>
-                                        <Form.Group controlId="saleDate">
-                                            <Form.Label>Sale Date</Form.Label>
-                                            <Form.Control type="date" name="saleDate" value={formData.saleDate} onChange={handleChange} />
-                                        </Form.Group>
-                                    </Form>
-                                </Modal.Body>
-                                <Modal.Footer>
-                                    <Button variant="info" onClick={handleCloseModal}>
-                                        Cancel
-                                    </Button>
-                                    <Button variant="info" onClick={handleSubmit}>
-                                        Add
-                                    </Button>
-                                </Modal.Footer>
-                            </Modal>
-                        </div>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+                <Button variant="info border-rounded" onClick={handleOpenModal}>
+                    Add Sale
+                </Button>
+                <Modal show={showModal} onHide={handleCloseModal}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Add New Sale</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form onSubmit={handleSubmit}>
+                            <Form.Group controlId="productName">
+                                <Form.Label>Product Name</Form.Label>
+                                <Form.Control type="text" name="productName" value={formData.productName} onChange={handleChange} />
+                            </Form.Group>
+                            <Form.Group controlId="quantitySold">
+                                <Form.Label>Quantity Sold</Form.Label>
+                                <Form.Control type="number" name="quantitySold" value={formData.quantitySold} onChange={handleChange} />
+                            </Form.Group>
+                            <Form.Group controlId="unitPrice">
+                                <Form.Label>Unit Price</Form.Label>
+                                <Form.Control type="number" name="unitPrice" value={formData.unitPrice} onChange={handleChange} />
+                            </Form.Group>
+                            <Form.Group controlId="totalPrice">
+                                <Form.Label>Total Price</Form.Label>
+                                <Form.Control type="number" name="totalPrice" value={formData.totalPrice} onChange={handleChange} />
+                            </Form.Group>
+                            <Form.Group controlId="customerName">
+                                <Form.Label>Customer Name</Form.Label>
+                                <Form.Control type="text" name="customerName" value={formData.customerName} onChange={handleChange} />
+                            </Form.Group>
+                            <Form.Group controlId="saleDate">
+                                <Form.Label>Sale Date</Form.Label>
+                                <Form.Control type="date" name="saleDate" value={formData.saleDate} onChange={handleChange} />
+                            </Form.Group>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="info" onClick={handleCloseModal}>
+                            Cancel
+                        </Button>
+                        <Button variant="info" onClick={handleSubmit}>
+                            Add
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
             </div>
         </>
     );

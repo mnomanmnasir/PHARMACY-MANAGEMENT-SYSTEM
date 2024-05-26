@@ -27,52 +27,50 @@ const Purchase = () => {
             console.error('Error fetching purchases:', error);
         }
     };
-    
+
 
     return (
         <>
-            <Sidebar />
-            <div className='container-fluid'>
-                <div className="flex-grow-1 d-flex justify-content-center align-items-center m-3">
-                    <div className='d-flex justify-content-center'>
-                        <div className="m-3 align-self-center">
-                            <table className="table table-hover table-bordered text-center">
-                                <thead className='table-info'>
-                                    <tr>
-                                        <th>Product Name</th>
-                                        <th>Category</th>
-                                        <th>Quantity</th>
-                                        <th>Supplier</th>
-                                        <th>Total Price</th>
-                                        <th>Expire Date</th>
-                                        <th>Actions</th>
+            <div className="main-content container-fluid px-4">
+                <div className="row mt-4">
+                    <div className="col">
+                        <table className="table table-hover table-bordered text-center">
+                            <thead className='table-info'>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Category</th>
+                                    <th>Quantity</th>
+                                    <th>Supplier</th>
+                                    <th>Total Price</th>
+                                    <th>Expire Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {purchases.map((purchase, index) => (
+                                    <tr key={index}>
+                                        <td>{purchase.productName}</td>
+                                        <td>{purchase.category}</td>
+                                        <td>{purchase.quantity}</td>
+                                        <td>{purchase.supplier}</td>
+                                        <td>{purchase.costPrice}</td>
+                                        <td>{purchase.expireDate}</td>
+                                        <td>
+                                            <Button variant="light" className='btn-sm'>
+                                                <BsPencilSquare />
+                                            </Button>
+                                            <Button variant="light" className='btn-sm'>
+                                                <BsTrash />
+                                            </Button>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    {purchases.map((purchase, index) => (
-                                        <tr key={index}>
-                                            <td>{purchase.productName}</td>
-                                            <td>{purchase.category}</td>
-                                            <td>{purchase.quantity}</td>
-                                            <td>{purchase.supplier}</td>
-                                            <td>{purchase.costPrice}</td>
-                                            <td>{purchase.expireDate}</td>
-                                            <td>
-                                                <Button variant="light" className='btn-sm'>
-                                                    <BsPencilSquare />
-                                                </Button>
-                                                <Button variant="light" className='btn-sm'>
-                                                    <BsTrash />
-                                                </Button>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
+        
         </>
     );
 };

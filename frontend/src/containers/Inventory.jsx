@@ -86,51 +86,45 @@ const Inventory = ({ Toggle }) => {
 
     return (
         <>
-            <Sidebar />
-
-            <div className="px-2">
-
-                <div className='justify-content-center'>
-                    <div className="flex-grow-1 d-flex justify-content-center align-items-center m-3">
-                        <div className='d-flex justify-content-center'>
-                            <div className="m-3 align-self-center">
-                                {/* <h2>Inventory</h2> */}
-                                <table className="table table-hover table-bordered text-center">
-                                    <thead className='table-info'>
-                                        <tr>
-                                            <th>Product Name</th>
-                                            <th>Category</th>
-                                            <th>Quantity</th>
-                                            <th>Price</th>
-                                            <th>Description</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {inventory.map((item, index) => (
-                                            <tr key={index}>
-                                                <td>{item.productName}</td>
-                                                <td>{item.category}</td>
-                                                <td>{item.quantity}</td>
-                                                <td>{item.price}</td>
-                                                <td>{item.description}</td>
-                                                <td>
-                                                    <Button variant="light" className='btn-sm'>
-                                                        <BsPencilSquare />
-                                                    </Button>
-                                                    <Button variant="light" className='btn-sm'>
-                                                        <BsTrash />
-                                                    </Button>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                                <Button variant="info border-rounded" onClick={handleOpenModal}>Add Item</Button>
-                            </div>
-                        </div>
+            <div className="main-content container-fluid px-4">
+                <div className="row mt-4">
+                    <div className="col">
+                        {/* <h2>Inventory</h2> */}
+                        <table className="table table-hover table-bordered text-center">
+                            <thead className='table-info'>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Category</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {inventory.map((item, index) => (
+                                    <tr key={index}>
+                                        <td>{item.productName}</td>
+                                        <td>{item.category}</td>
+                                        <td>{item.quantity}</td>
+                                        <td>{item.price}</td>
+                                        <td>{item.description}</td>
+                                        <td>
+                                            <Button variant="light" className='btn-sm'>
+                                                <BsPencilSquare />
+                                            </Button>
+                                            <Button variant="light" className='btn-sm'>
+                                                <BsTrash />
+                                            </Button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <Button variant="info border-rounded" onClick={handleOpenModal}>Add Item</Button>
                     </div>
                 </div>
+
                 {/* Modal for adding new item */}
                 <Modal show={showModal} onHide={handleCloseModal}>
                     <Modal.Header closeButton>
