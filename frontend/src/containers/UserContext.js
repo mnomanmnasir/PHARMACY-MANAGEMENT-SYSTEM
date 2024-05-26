@@ -9,7 +9,7 @@ export const useUser = () => useContext(UserContext);
 // Create the UserProvider component
 export const UserProvider = ({ children }) => {
   // Define your user state and any related functions
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState([]);
 
   // Example function to update user state
   const updateUser = (newUser) => {
