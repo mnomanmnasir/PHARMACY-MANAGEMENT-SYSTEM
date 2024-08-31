@@ -9,7 +9,7 @@ const Purchase = () => {
     useEffect(() => {
         fetchPurchases();
     }, []);
-
+    const [searchQuery, setsearchQuery] = useState("");
     const fetchPurchases = async () => {
         try {
             const response = await fetch('http://localhost:8080/api/v1/purchase/purchases');
@@ -28,14 +28,32 @@ const Purchase = () => {
         }
     };
 
-
+    const handleSearchChange = (e) => {
+        setsearchQuery(e.target.value);
+      };
+      const filteredPurchases = purchases.filter((item) =>
+        item.productName.toLowerCase().includes(searchQuery.toLowerCase())
+      );
     return (
         <>
             <div className="main-content container-fluid px-4">
                 <div className="row mt-4">
-                    <div className="col">
-                        <table className="table table-hover table-bordered text-center">
-                            <thead className='table-info'>
+                    <div className="col table-responsive rounded p-3 border bg-white">
+                    <div className='d-flex gap-2 pb-4'>
+                        <input
+                         type="text"
+                          name="" 
+                          className='seacrh-input flex-fill'
+                           placeholder="Search"
+                           value={searchQuery}
+                           onChange={handleSearchChange}
+                           />
+                        <Button variant="info border-rounded" className='addItem-button'  >+ Add Item</Button>
+                        </div>
+                      
+                        <h2 className='pb-4'>Purchase</h2>
+                        <table className="table  table-striped table-hover">
+                            <thead className=''>
                                 <tr>
                                     <th>Product Name</th>
                                     <th>Category</th>
@@ -47,7 +65,7 @@ const Purchase = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {purchases.map((purchase, index) => (
+                                {filteredPurchases.map((purchase, index) => (
                                     <tr key={index}>
                                         <td>{purchase.productName}</td>
                                         <td>{purchase.category}</td>

@@ -10,9 +10,15 @@ const Customer = () => {
         <>
             <div className="main-content container-fluid px-4">
                 <div className="row mt-4">
-                    <div className="col">
-                        <table className="table table-hover table-bordered">
-                            <thead className='table-dark'>
+                    <div className="col table-responsive rounded p-3 border bg-white">
+                    <div className='d-flex gap-2 pb-4'>
+                        <input type="text" name="" className='seacrh-input flex-fill' placeholder="Search"/>
+                        <Button variant="info border-rounded" className='addItem-button' >+ Add Customer</Button>
+                        </div>
+                      
+                        <h2 className='pb-4'>Customer</h2>
+                        <table className="table  table-striped table-hover">
+                            <thead className=''>
                                 <tr>
                                     <th className='text-center'>Name</th>
                                     <th className='text-center'>Contact Number</th>

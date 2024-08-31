@@ -19,10 +19,11 @@ import Sales from "./containers/Sales";
 import Inventory from "./containers/Inventory";
 import { createRoot } from "react-dom/client";
 import { AuthProvider } from "./containers/AuthContext";
+import { UserProvider } from "./containers/UserContext";
 
-if (!process.env.REACT_APP_CLERK_PUBLISHABLE_KEY) {
-  throw new Error("Missing Publishable Key");
-}
+// if (!process.env.REACT_APP_CLERK_PUBLISHABLE_KEY) {
+//   throw new Error("Missing Publishable Key");
+// }
 
 // Import your publishable key
 // const clerkPubKey = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY;
@@ -92,12 +93,14 @@ if (!process.env.REACT_APP_CLERK_PUBLISHABLE_KEY) {
 // Rendering the React application using ReactDOM.render
 ReactDOM.render(
   <React.StrictMode>
-    <AuthProvider>
-      {/* Wrap your entire app with AuthProvider */}
-      {/* <BrowserRouter> */}
-      <App />
-      {/* </BrowserRouter> */}
-    </AuthProvider>
+    <UserProvider>
+      <AuthProvider>
+        {/* Wrap your entire app with AuthProvider */}
+        {/* <BrowserRouter> */}
+        <App />
+        {/* </BrowserRouter> */}
+      </AuthProvider>
+    </UserProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

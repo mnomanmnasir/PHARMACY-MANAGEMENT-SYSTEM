@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Chart from 'react-apexcharts';
 import axios from 'axios';
-import AreaChart from './AreaChart';
 
 const Donut = () => {
     const [salesData, setSalesData] = useState([]);
@@ -12,14 +11,16 @@ const Donut = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Fetch sales data
-                const salesResponse = await axios.get('http://localhost:8080/api/v1/sales/sales');
+                // Comment out the actual API calls for now
+                // const salesResponse = await axios.get('http://localhost:8080/api/v1/sales/sales');
+                // const inventoriesResponse = await axios.get('http://localhost:8080/api/v1/inventories/inventories');
+
+                // Use dummy data for now
+                const salesResponse = { data: [10, 20, 30, 40, 50] };
+                const inventoriesResponse = { data: [15, 25, 35, 45, 55] };
+
                 setSalesData(salesResponse.data);
-
-                // Fetch inventories data
-                const inventoriesResponse = await axios.get('http://localhost:8080/api/v1/inventories/inventories');
                 setInventoriesData(inventoriesResponse.data);
-
                 setLoading(false);
             } catch (error) {
                 setError(error.message);
@@ -30,8 +31,8 @@ const Donut = () => {
         fetchData();
     }, []);
 
-    const totalSales = salesData.length;
-    const totalInventories = inventoriesData.length;
+    const totalSales = salesData.reduce((acc, curr) => acc + curr, 0);
+    const totalInventories = inventoriesData.reduce((acc, curr) => acc + curr, 0);
 
     const options = {
         chart: {
@@ -43,7 +44,7 @@ const Donut = () => {
             breakpoint: 480,
             options: {
                 chart: {
-                    width: 200
+                    width: 300
                 },
                 legend: {
                     position: 'bottom'
@@ -52,17 +53,13 @@ const Donut = () => {
         }]
     };
 
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+
     return (
-        <>
-
-            <div style={{ marginLeft: '120%', marginTop: '15%' }}>
-                <Chart options={options} series={options.series} type="pie" width={500} />
-            </div>
-
-        </>
-
-
-
+        <div style={{ width: '100%',  padding: '10px' }}>
+            <Chart options={options} series={options.series} type="pie"   width="100%" />
+        </div>
     );
 };
 

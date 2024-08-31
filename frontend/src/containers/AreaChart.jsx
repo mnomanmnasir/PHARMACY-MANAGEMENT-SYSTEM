@@ -25,13 +25,26 @@ const StackedChart = () => {
             stacked: true,
             toolbar: {
                 show: false
-            }
+            },
+            background: '#fff' 
         },
+        responsive: [{
+            breakpoint: 480,
+            options: {
+              legend: {
+                position: 'bottom',
+                offsetX: -10,
+                offsetY: 0
+              }
+            }
+          }],
+       
         plotOptions: {
             bar: {
                 horizontal: false,
             },
         },
+      
         xaxis: {
             categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
         },
@@ -75,8 +88,10 @@ const StackedChart = () => {
     };
 
     return (
-        <div style={{ marginTop: '10%' }}>
-            <Chart options={options} series={series} type="bar" height={350} width={450} />
+        <div style={{ padding: '10px' ,borderRadius:"10px" , }}>
+           
+                <Chart options={options} series={series} type="bar"   />
+          
         </div>
     );
 };
