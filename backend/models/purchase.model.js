@@ -29,10 +29,7 @@ const purchaseSchema = new mongoose.Schema({
       return new Date(value);
     },
   },
-  action: {
-    type: String,
-    // required: true
-  },
+
 });
 
 const Purchase = mongoose.model("Purchase", purchaseSchema);

@@ -1,9 +1,11 @@
 const express = require('express');
-const router = express.Router();
+// const router = express.Router();
+const app = express();
+
 const Sale = require('../models/sales.model');
 
 // POST route to submit a new sale
-router.post('/sales', async (req, res) => {
+app.post('/sales', async (req, res) => {
   try {
     // Create a new sale document
     const newSale = new Sale(req.body);
@@ -19,7 +21,7 @@ router.post('/sales', async (req, res) => {
 });
 
 // GET route to fetch all sales
-router.get('/sales', async (req, res) => {
+app.get('/sales', async (req, res) => {
   try {
     // Fetch all sales from the database
     const sales = await Sale.find();
@@ -32,7 +34,7 @@ router.get('/sales', async (req, res) => {
 });
 
 // PUT route to update a sale by ID
-router.put('/sales/:id', async (req, res) => {
+app.put('/sales/:id', async (req, res) => {
   try {
     // Extract the ID parameter from the request URL
     const { id } = req.params;
@@ -53,7 +55,7 @@ router.put('/sales/:id', async (req, res) => {
 });
 
 // DELETE route to delete a sale by ID
-router.delete('/sales/:id', async (req, res) => {
+app.delete('/sales/:id', async (req, res) => {
   try {
     // Extract the ID parameter from the request URL
     const { id } = req.params;
@@ -73,4 +75,4 @@ router.delete('/sales/:id', async (req, res) => {
   }
 });
 
-module.exports = router;
+module.exports = app;

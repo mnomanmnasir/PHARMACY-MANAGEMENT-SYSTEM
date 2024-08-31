@@ -1,4 +1,6 @@
-const Inventory = require('../models/inventories.model');
+import Inventory from '../models/inventories.model'
+
+
 
 // Create a new inventory item
 exports.createInventoryItem = async (req, res) => {

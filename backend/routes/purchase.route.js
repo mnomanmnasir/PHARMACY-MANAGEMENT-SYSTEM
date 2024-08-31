@@ -1,9 +1,10 @@
 const express = require("express");
-const router = express.Router();
+const app = express();
+// const router = express.Router();
 const Purchase = require("../models/purchase.model");
 
 // Get all purchases
-router.get("/purchases", async (req, res) => {
+app.get("/purchases", async (req, res) => {
   try {
     const purchases = await Purchase.find();
     res.json(purchases);
@@ -14,7 +15,7 @@ router.get("/purchases", async (req, res) => {
 });
 
 // Create a new purchase
-router.post("/purchases", async (req, res) => {
+app.post("/purchases", async (req, res) => {
     const { productName, category, supplier, costPrice, quantity, expireDate, action } = req.body;
 
     try {
@@ -38,7 +39,7 @@ router.post("/purchases", async (req, res) => {
 });
 
 // Delete a purchase
-router.delete("/purchases/:id", async (req, res) => {
+app.delete("/purchases/:id", async (req, res) => {
   try {
     const deletedPurchase = await Purchase.findByIdAndDelete(req.params.id);
     if (!deletedPurchase) {
@@ -51,7 +52,7 @@ router.delete("/purchases/:id", async (req, res) => {
 });
 
 // Update a purchase
-router.put("/purchases/:id", async (req, res) => {
+app.put("/purchases/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const updatedPurchase = await Purchase.findByIdAndUpdate(id, req.body, { new: true });
@@ -64,4 +65,4 @@ router.put("/purchases/:id", async (req, res) => {
   }
 });
 
-module.exports = router;
+module.exports = app;
